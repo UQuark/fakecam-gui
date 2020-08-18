@@ -1,0 +1,7 @@
+github.com/UQuark0/fcbe v0.0.0-20200817182047-bf659a841de2 h1:W6IVRdUQvwYZ95HN018V5bS74o4383QpExxaqdyaNDY=
+github.com/UQuark0/fcbe v0.0.0-20200817182047-bf659a841de2/go.mod h1:zdKru7MYHZF7Hg41auwrEZEa/01za174PRmyCFZtvVc=
+github.com/go-bindata/go-bindata v1.0.0 h1:DZ34txDXWn1DyWa+vQf7V9ANc2ILTtrEjtlsdJRF26M=
+github.com/go-bindata/go-bindata v3.1.2+incompatible h1:5vjJMVhowQdPzjE1LdxyFF7YFTXg5IgGVW4gBr5IbvE=
+github.com/go-bindata/go-bindata v3.1.2+incompatible/go.mod h1:xK8Dsgwmeed+BBsSy2XTopBn/8uK2HWuGSnA11C3Joo=
+github.com/gotk3/gotk3 v0.4.0 h1:TIuhyQitGeRTxOQIV3AJlYtEWWJpC74JHwAIsxlH8MU=
+github.com/gotk3/gotk3 v0.4.0/go.mod h1:Eew3QBwAOBTrfFFDmsDE5wZWbcagBL1NUslj1GhRveo=
