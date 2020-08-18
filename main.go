@@ -33,13 +33,16 @@ func initGTK() {
 
 func initBuilder() *gtk.Builder {
 	var (
-		err error
-		b   *gtk.Builder
+		err  error
+		b    *gtk.Builder
+		data []byte
 	)
 
 	b, err = gtk.BuilderNew()
 	checkErr(err)
-	err = b.AddFromFile(gladeFile)
+	data, err = Asset(gladeFile)
+	checkErr(err)
+	err = b.AddFromString(string(data))
 	checkErr(err)
 	return b
 }
