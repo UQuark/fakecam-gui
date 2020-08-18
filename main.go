@@ -125,7 +125,7 @@ func prepareComponents() {
 		return
 	}
 
-	sbLoopCount.SetValue(float64(getDeviceNumber()))
+	sbDevice.SetValue(float64(getDeviceNumber()))
 }
 
 func run() {
