@@ -2,6 +2,7 @@ package main
 
 import (
 	"os"
+	"os/exec"
 
 	"github.com/UQuark0/fcbe"
 
@@ -98,13 +99,26 @@ func prepareComponents() {
 
 	v4l2loaded, err := fcbe.IsV4L2Loaded()
 
-	if err != nil || !v4l2loaded {
+	if err != nil {
 		wnMain.SetSensitive(false)
+		lbModule.SetText(err.Error())
+		return
 	}
 
+	if !v4l2loaded {
+		modprobe()
+	}
+
+	v4l2loaded, err = fcbe.IsV4L2Loaded()
+
 	if err != nil {
+		wnMain.SetSensitive(false)
 		lbModule.SetText(err.Error())
-	} else if !v4l2loaded {
+		return
+	}
+
+	if !v4l2loaded {
+		wnMain.SetSensitive(false)
 		lbModule.SetText("'v4l2loopback' kernel module is not loaded")
 	}
 }
@@ -124,6 +138,12 @@ func checkTypecast(b bool) {
 	if !b {
 		panic(invalidTypecastErr)
 	}
+}
+
+func modprobe() {
+	cmd := exec.Command("pkexec", "modprobe", "v4l2loopback")
+	err := cmd.Run()
+	checkErr(err)
 }
 
 func main() {
