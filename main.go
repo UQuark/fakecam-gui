@@ -3,6 +3,8 @@ package main
 import (
 	"os"
 	"os/exec"
+	"strconv"
+	"strings"
 
 	"github.com/UQuark0/fcbe"
 
@@ -120,7 +122,10 @@ func prepareComponents() {
 	if !v4l2loaded {
 		wnMain.SetSensitive(false)
 		lbModule.SetText("'v4l2loopback' kernel module is not loaded")
+		return
 	}
+
+	sbLoopCount.SetValue(float64(getDeviceNumber()))
 }
 
 func run() {
@@ -138,6 +143,15 @@ func checkTypecast(b bool) {
 	if !b {
 		panic(invalidTypecastErr)
 	}
+}
+
+func getDeviceNumber() int {
+	cmd := exec.Command("sh", "-c", "ls /dev/ | grep video | tail -1 | sed 's/[^0-9]//g'")
+	out, err := cmd.Output()
+	checkErr(err)
+	iout, err := strconv.Atoi(strings.TrimSuffix(string(out), "\n"))
+	checkErr(err)
+	return iout
 }
 
 func modprobe() {
